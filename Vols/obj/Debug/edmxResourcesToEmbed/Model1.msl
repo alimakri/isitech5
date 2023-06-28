@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="VolsModelStoreContainer" CdmEntityContainer="BD">
+    <EntitySetMapping Name="Avion">
+      <EntityTypeMapping TypeName="VolsModel.Avion">
+        <MappingFragment StoreEntitySet="Avion">
+          <ScalarProperty Name="idAvion" ColumnName="idAvion" />
+          <ScalarProperty Name="Modele" ColumnName="Modele" />
+          <ScalarProperty Name="Compagnie" ColumnName="Compagnie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pilote">
+      <EntityTypeMapping TypeName="VolsModel.Pilote">
+        <MappingFragment StoreEntitySet="Pilote">
+          <ScalarProperty Name="idPilote" ColumnName="idPilote" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vol">
+      <EntityTypeMapping TypeName="VolsModel.Vol">
+        <MappingFragment StoreEntitySet="Vol">
+          <ScalarProperty Name="idVol" ColumnName="idVol" />
+          <ScalarProperty Name="DateDepart" ColumnName="DateDepart" />
+          <ScalarProperty Name="DateArrivee" ColumnName="DateArrivee" />
+          <ScalarProperty Name="idAvion" ColumnName="idAvion" />
+          <ScalarProperty Name="idPilote" ColumnName="idPilote" />
+          <ScalarProperty Name="LieuDepart" ColumnName="LieuDepart" />
+          <ScalarProperty Name="LieuArrivee" ColumnName="LieuArrivee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

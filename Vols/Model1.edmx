@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="VolsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Avion">
+          <Key>
+            <PropertyRef Name="idAvion" />
+          </Key>
+          <Property Name="idAvion" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Modele" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Compagnie" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pilote">
+          <Key>
+            <PropertyRef Name="idPilote" />
+          </Key>
+          <Property Name="idPilote" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Prenom" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateNaissance" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vol">
+          <Key>
+            <PropertyRef Name="idVol" />
+          </Key>
+          <Property Name="idVol" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateDepart" Type="datetime" Nullable="false" />
+          <Property Name="DateArrivee" Type="datetime" Nullable="false" />
+          <Property Name="idAvion" Type="bigint" Nullable="false" />
+          <Property Name="idPilote" Type="bigint" Nullable="false" />
+          <Property Name="LieuDepart" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LieuArrivee" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Vol_Avion">
+          <End Role="Avion" Type="Self.Avion" Multiplicity="1" />
+          <End Role="Vol" Type="Self.Vol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Avion">
+              <PropertyRef Name="idAvion" />
+            </Principal>
+            <Dependent Role="Vol">
+              <PropertyRef Name="idAvion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vol_Pilote">
+          <End Role="Pilote" Type="Self.Pilote" Multiplicity="1" />
+          <End Role="Vol" Type="Self.Vol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pilote">
+              <PropertyRef Name="idPilote" />
+            </Principal>
+            <Dependent Role="Vol">
+              <PropertyRef Name="idPilote" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VolsModelStoreContainer">
+          <EntitySet Name="Avion" EntityType="Self.Avion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pilote" EntityType="Self.Pilote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vol" EntityType="Self.Vol" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Vol_Avion" Association="Self.FK_Vol_Avion">
+            <End Role="Avion" EntitySet="Avion" />
+            <End Role="Vol" EntitySet="Vol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vol_Pilote" Association="Self.FK_Vol_Pilote">
+            <End Role="Pilote" EntitySet="Pilote" />
+            <End Role="Vol" EntitySet="Vol" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VolsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Avion">
+          <Key>
+            <PropertyRef Name="idAvion" />
+          </Key>
+          <Property Name="idAvion" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Modele" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Compagnie" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Vol" Relationship="Self.FK_Vol_Avion" FromRole="Avion" ToRole="Vol" />
+        </EntityType>
+        <EntityType Name="Pilote">
+          <Key>
+            <PropertyRef Name="idPilote" />
+          </Key>
+          <Property Name="idPilote" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prenom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateNaissance" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Vol" Relationship="Self.FK_Vol_Pilote" FromRole="Pilote" ToRole="Vol" />
+        </EntityType>
+        <EntityType Name="Vol">
+          <Key>
+            <PropertyRef Name="idVol" />
+          </Key>
+          <Property Name="idVol" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateDepart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateArrivee" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idAvion" Type="Int64" Nullable="false" />
+          <Property Name="idPilote" Type="Int64" Nullable="false" />
+          <Property Name="LieuDepart" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LieuArrivee" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Avion" Relationship="Self.FK_Vol_Avion" FromRole="Vol" ToRole="Avion" />
+          <NavigationProperty Name="Pilote" Relationship="Self.FK_Vol_Pilote" FromRole="Vol" ToRole="Pilote" />
+        </EntityType>
+        <Association Name="FK_Vol_Avion">
+          <End Role="Avion" Type="Self.Avion" Multiplicity="1" />
+          <End Role="Vol" Type="Self.Vol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Avion">
+              <PropertyRef Name="idAvion" />
+            </Principal>
+            <Dependent Role="Vol">
+              <PropertyRef Name="idAvion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vol_Pilote">
+          <End Role="Pilote" Type="Self.Pilote" Multiplicity="1" />
+          <End Role="Vol" Type="Self.Vol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pilote">
+              <PropertyRef Name="idPilote" />
+            </Principal>
+            <Dependent Role="Vol">
+              <PropertyRef Name="idPilote" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Avion" EntityType="Self.Avion" />
+          <EntitySet Name="Pilote" EntityType="Self.Pilote" />
+          <EntitySet Name="Vol" EntityType="Self.Vol" />
+          <AssociationSet Name="FK_Vol_Avion" Association="Self.FK_Vol_Avion">
+            <End Role="Avion" EntitySet="Avion" />
+            <End Role="Vol" EntitySet="Vol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vol_Pilote" Association="Self.FK_Vol_Pilote">
+            <End Role="Pilote" EntitySet="Pilote" />
+            <End Role="Vol" EntitySet="Vol" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VolsModelStoreContainer" CdmEntityContainer="BD">
+          <EntitySetMapping Name="Avion">
+            <EntityTypeMapping TypeName="VolsModel.Avion">
+              <MappingFragment StoreEntitySet="Avion">
+                <ScalarProperty Name="idAvion" ColumnName="idAvion" />
+                <ScalarProperty Name="Modele" ColumnName="Modele" />
+                <ScalarProperty Name="Compagnie" ColumnName="Compagnie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pilote">
+            <EntityTypeMapping TypeName="VolsModel.Pilote">
+              <MappingFragment StoreEntitySet="Pilote">
+                <ScalarProperty Name="idPilote" ColumnName="idPilote" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vol">
+            <EntityTypeMapping TypeName="VolsModel.Vol">
+              <MappingFragment StoreEntitySet="Vol">
+                <ScalarProperty Name="idVol" ColumnName="idVol" />
+                <ScalarProperty Name="DateDepart" ColumnName="DateDepart" />
+                <ScalarProperty Name="DateArrivee" ColumnName="DateArrivee" />
+                <ScalarProperty Name="idAvion" ColumnName="idAvion" />
+                <ScalarProperty Name="idPilote" ColumnName="idPilote" />
+                <ScalarProperty Name="LieuDepart" ColumnName="LieuDepart" />
+                <ScalarProperty Name="LieuArrivee" ColumnName="LieuArrivee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

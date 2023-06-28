@@ -1,0 +1,8 @@
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\MajBD1\bin\Debug\MajBD1.exe.config
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\MajBD1\bin\Debug\MajBD1.exe
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\MajBD1\bin\Debug\MajBD1.pdb
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\MajBD1\obj\Debug\MajBD1.csproj.AssemblyReference.cache
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\MajBD1\obj\Debug\MajBD1.csproj.SuggestedBindingRedirects.cache
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\MajBD1\obj\Debug\MajBD1.csproj.CoreCompileInputs.cache
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\MajBD1\obj\Debug\MajBD1.exe
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\MajBD1\obj\Debug\MajBD1.pdb

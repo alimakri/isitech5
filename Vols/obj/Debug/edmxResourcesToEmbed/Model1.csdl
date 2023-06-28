@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VolsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Avion">
+    <Key>
+      <PropertyRef Name="idAvion" />
+    </Key>
+    <Property Name="idAvion" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Modele" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Compagnie" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Vol" Relationship="Self.FK_Vol_Avion" FromRole="Avion" ToRole="Vol" />
+  </EntityType>
+  <EntityType Name="Pilote">
+    <Key>
+      <PropertyRef Name="idPilote" />
+    </Key>
+    <Property Name="idPilote" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Prenom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateNaissance" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Vol" Relationship="Self.FK_Vol_Pilote" FromRole="Pilote" ToRole="Vol" />
+  </EntityType>
+  <EntityType Name="Vol">
+    <Key>
+      <PropertyRef Name="idVol" />
+    </Key>
+    <Property Name="idVol" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateDepart" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateArrivee" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="idAvion" Type="Int64" Nullable="false" />
+    <Property Name="idPilote" Type="Int64" Nullable="false" />
+    <Property Name="LieuDepart" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LieuArrivee" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Avion" Relationship="Self.FK_Vol_Avion" FromRole="Vol" ToRole="Avion" />
+    <NavigationProperty Name="Pilote" Relationship="Self.FK_Vol_Pilote" FromRole="Vol" ToRole="Pilote" />
+  </EntityType>
+  <Association Name="FK_Vol_Avion">
+    <End Role="Avion" Type="Self.Avion" Multiplicity="1" />
+    <End Role="Vol" Type="Self.Vol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Avion">
+        <PropertyRef Name="idAvion" />
+      </Principal>
+      <Dependent Role="Vol">
+        <PropertyRef Name="idAvion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vol_Pilote">
+    <End Role="Pilote" Type="Self.Pilote" Multiplicity="1" />
+    <End Role="Vol" Type="Self.Vol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pilote">
+        <PropertyRef Name="idPilote" />
+      </Principal>
+      <Dependent Role="Vol">
+        <PropertyRef Name="idPilote" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BD" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Avion" EntityType="Self.Avion" />
+    <EntitySet Name="Pilote" EntityType="Self.Pilote" />
+    <EntitySet Name="Vol" EntityType="Self.Vol" />
+    <AssociationSet Name="FK_Vol_Avion" Association="Self.FK_Vol_Avion">
+      <End Role="Avion" EntitySet="Avion" />
+      <End Role="Vol" EntitySet="Vol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vol_Pilote" Association="Self.FK_Vol_Pilote">
+      <End Role="Pilote" EntitySet="Pilote" />
+      <End Role="Vol" EntitySet="Vol" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

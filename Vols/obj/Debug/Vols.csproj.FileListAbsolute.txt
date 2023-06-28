@@ -1,0 +1,14 @@
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\Vols\bin\Debug\Vols.exe.config
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\Vols\bin\Debug\Vols.exe
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\Vols\bin\Debug\Vols.pdb
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\Vols\obj\Debug\Vols.csproj.AssemblyReference.cache
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\Vols\obj\Debug\Vols.csproj.SuggestedBindingRedirects.cache
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\Vols\obj\Debug\Vols.csproj.CoreCompileInputs.cache
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\Vols\obj\Debug\Vols.exe
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\Vols\obj\Debug\Vols.pdb
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\Vols\bin\Debug\EntityFramework.dll
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\Vols\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\Vols\bin\Debug\EntityFramework.xml
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\Vols\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\Vols\bin\Debug\fr\EntityFramework.resources.dll
+C:\Users\alima\source\repos\Isitech2\CSharp\MesDonnees\Vols\obj\Debug\Vols.csproj.CopyComplete

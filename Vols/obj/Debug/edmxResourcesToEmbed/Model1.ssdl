@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VolsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Avion">
+    <Key>
+      <PropertyRef Name="idAvion" />
+    </Key>
+    <Property Name="idAvion" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Modele" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Compagnie" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pilote">
+    <Key>
+      <PropertyRef Name="idPilote" />
+    </Key>
+    <Property Name="idPilote" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Prenom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateNaissance" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vol">
+    <Key>
+      <PropertyRef Name="idVol" />
+    </Key>
+    <Property Name="idVol" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateDepart" Type="datetime" Nullable="false" />
+    <Property Name="DateArrivee" Type="datetime" Nullable="false" />
+    <Property Name="idAvion" Type="bigint" Nullable="false" />
+    <Property Name="idPilote" Type="bigint" Nullable="false" />
+    <Property Name="LieuDepart" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LieuArrivee" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Vol_Avion">
+    <End Role="Avion" Type="Self.Avion" Multiplicity="1" />
+    <End Role="Vol" Type="Self.Vol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Avion">
+        <PropertyRef Name="idAvion" />
+      </Principal>
+      <Dependent Role="Vol">
+        <PropertyRef Name="idAvion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vol_Pilote">
+    <End Role="Pilote" Type="Self.Pilote" Multiplicity="1" />
+    <End Role="Vol" Type="Self.Vol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pilote">
+        <PropertyRef Name="idPilote" />
+      </Principal>
+      <Dependent Role="Vol">
+        <PropertyRef Name="idPilote" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="VolsModelStoreContainer">
+    <EntitySet Name="Avion" EntityType="Self.Avion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pilote" EntityType="Self.Pilote" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vol" EntityType="Self.Vol" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Vol_Avion" Association="Self.FK_Vol_Avion">
+      <End Role="Avion" EntitySet="Avion" />
+      <End Role="Vol" EntitySet="Vol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vol_Pilote" Association="Self.FK_Vol_Pilote">
+      <End Role="Pilote" EntitySet="Pilote" />
+      <End Role="Vol" EntitySet="Vol" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
